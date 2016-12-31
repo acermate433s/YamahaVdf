@@ -11,27 +11,43 @@ namespace YamahaVdf
 
         public enum FreightChargeType
         {
+            [Code("C")]
             Collect,
+
+            [Code("D")]
             PrePaid,
         }
 
         public enum SalesOrderType
         {
+            [Code("R")]
             Regular,
+
+            [Code("E")]
             Emergency,
         }
 
         public enum SalesOrderSourceType
         {
+            [Code("D")]
             Domestic,
+
+            [Code("I")]
             Internal,
+
+            [Code("E")]
             Employee,
         }
 
         public enum ShippingMethodType
         {
+            [Code("A")]
             Air,
+
+            [Code("S")]
             Sea,
+
+            [Code("G")]
             Ground,
         }
 
@@ -54,94 +70,12 @@ namespace YamahaVdf
                 CustomerReferenceNo = contents[index++];
                 PromotionCode = contents[index++];
                 PaymentTerm = contents[index++];
-                FreightCharge =
-                    (new Func<string, FreightChargeType>(
-                        (item) =>
-                        {
-                            FreightChargeType result = FreightChargeType.Collect;
-
-                            switch (item)
-                            {
-                                case "C":
-                                    result = FreightChargeType.Collect;
-                                    break;
-                                case "P":
-                                    result = FreightChargeType.PrePaid;
-                                    break;
-                            }
-
-                            return result;
-                        })
-                    )
-                    .Invoke(contents[index++]);
-                SalesOrder =
-                    (new Func<string, SalesOrderType>(
-                        (item) =>
-                        {
-                            SalesOrderType result = SalesOrderType.Emergency;
-
-                            switch (item)
-                            {
-                                case "E":
-                                    result = SalesOrderType.Emergency;
-                                    break;
-                                case "R":
-                                    result = SalesOrderType.Regular;
-                                    break;
-                            }
-
-                            return result;
-                        })
-                    )
-                    .Invoke(contents[index++]);
-                SalesOrderSource =
-                    (new Func<string, SalesOrderSourceType>(
-                        (item) =>
-                        {
-                            SalesOrderSourceType result = SalesOrderSourceType.Domestic;
-
-                            switch (item)
-                            {
-                                case "D":
-                                    result = SalesOrderSourceType.Domestic;
-                                    break;
-                                case "E":
-                                    result = SalesOrderSourceType.Employee;
-                                    break;
-                                case "I":
-                                    result = SalesOrderSourceType.Internal;
-                                    break;
-                            }
-
-                            return result;
-                        })
-                    )
-                    .Invoke(contents[index++]);
+                FreightCharge = contents[index++].GetEnumValue<FreightChargeType>(FreightChargeType.Collect);
+                SalesOrder = contents[index++].GetEnumValue<SalesOrderType>(SalesOrderType.Regular);
+                SalesOrderSource = contents[index++].GetEnumValue<SalesOrderSourceType>(SalesOrderSourceType.Internal);
                 SupplierCode = contents[index++];
                 CompanyCode = contents[index++];
-                ShippingMethod =
-                    (new Func<string, ShippingMethodType>(
-                        (item) =>
-                        {
-                            ShippingMethodType result = ShippingMethodType.Air;
-
-                            switch (item)
-                            {
-                                case "A":
-                                    result = ShippingMethodType.Air;
-                                    break;
-                                case "G":
-                                    result = ShippingMethodType.Ground;
-                                    break;
-                                case "S":
-                                    result = ShippingMethodType.Sea;
-                                    break;
-                            }
-
-                            return result;
-                        })
-                    )
-                    .Invoke(contents[index++]);
+                ShippingMethod = contents[index++].GetEnumValue<ShippingMethodType>(ShippingMethodType.Ground);
             }
 
             public char Indicator { get; } = 'A';
