@@ -65,7 +65,7 @@ namespace YamahaVdf
                     .ToArray();
 
                 int index = 0;
-                SalesOrderNo = contents[index++];
+                SalesOrderNo = double.Parse(contents[index++]);
                 CustomerCode = contents[index++];
                 CustomerReferenceNo = contents[index++];
                 PromotionCode = contents[index++];
@@ -79,7 +79,7 @@ namespace YamahaVdf
             }
 
             public char Indicator { get; } = 'A';
-            public string SalesOrderNo { get; set; }
+            public double SalesOrderNo { get; set; }
             public string CustomerCode { get; set; }
             public string CustomerReferenceNo { get; set; }
             public string PromotionCode { get; set; }
@@ -106,14 +106,14 @@ namespace YamahaVdf
                     .ToArray();
 
                 int index = 0;
-                SalesOrderNo = contents[index++];
+                SalesOrderNo = double.Parse(contents[index++]);
                 ContactPerson = contents[index++];
                 AddressLine1 = contents[index++];
                 AddressLine2 = contents[index++];
             }
 
             public char Indicator { get; } = 'B';
-            public string SalesOrderNo { get; set; }
+            public double SalesOrderNo { get; set; }
             public string ContactPerson { get; set; }
             public string AddressLine1 { get; set; }
             public string AddressLine2 { get; set; }
@@ -133,7 +133,7 @@ namespace YamahaVdf
                     .ToArray();
 
                 int index = 0;
-                SalesOrderNo = contents[index++];
+                SalesOrderNo = double.Parse(contents[index++]);
                 CustomerName = contents[index++];
                 CityName = contents[index++];
                 StateCode = contents[index++];
@@ -143,7 +143,7 @@ namespace YamahaVdf
             }
 
             public char Indicator { get; } = 'C';
-            public string SalesOrderNo { get; set; }
+            public double SalesOrderNo { get; set; }
             public string CustomerName { get; set; }
             public string CityName { get; set; }
             public string StateCode { get; set; }
@@ -166,25 +166,25 @@ namespace YamahaVdf
                     .ToArray();
 
                 int index = 0;
-                SalesOrderNo = contents[index++];
-                SalesOrderLineNo = contents[index++];
+                SalesOrderNo = double.Parse(contents[index++]);
+                SalesOrderLineNo = int.Parse(contents[index++]);
                 PartNo = contents[index++];
-                SalesQuantity = contents[index++];
-                SalesPrice = contents[index++];
-                RequiredShipDate = contents[index++];
-                PurchasePrice = contents[index++];
-                TaxAmount = contents[index++];
+                SalesQuantity = double.Parse(contents[index++]);
+                SalesPrice = double.Parse(contents[index++]);
+                RequiredShipDate = DateTime.ParseExact(contents[index++], "yyyyMMdd", null);
+                PurchasePrice = double.Parse(contents[index++]);
+                TaxAmount = contents[index] != "" ? double.Parse(contents[index++]) : 0D;
             }
 
             public char Indicator { get; } = 'D';
-            public string SalesOrderNo { get; set; }
-            public string SalesOrderLineNo { get; set; }
+            public double SalesOrderNo { get; set; }
+            public int SalesOrderLineNo { get; set; }
             public string PartNo { get; set; }
-            public string SalesQuantity { get; set; }
-            public string SalesPrice { get; set; }
-            public string RequiredShipDate { get; set; }
-            public string PurchasePrice { get; set; }
-            public string TaxAmount { get; set; }
+            public double SalesQuantity { get; set; }
+            public double SalesPrice { get; set; }
+            public DateTime RequiredShipDate { get; set; }
+            public double PurchasePrice { get; set; }
+            public double TaxAmount { get; set; }
         }
 
         public Os1(string[] contents)
