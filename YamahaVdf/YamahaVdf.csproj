@@ -46,8 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Os1.cs" />
+    <Compile Include="Os2.cs" />
+    <Compile Include="Os7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,6 @@ namespace YamahaVdf
 {
     public class Os1
     {
-        private const string DELIMITER = ",";
-
         public enum FreightChargeType
         {
             [Code("C")]
@@ -55,12 +53,15 @@ namespace YamahaVdf
         {
             internal Header1(string content)
             {
+                if (String.IsNullOrEmpty(content))
+                    throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
+
                 if (content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
                     content
-                    .Split(new[] { DELIMITER }, StringSplitOptions.None)
+                    .Split(new[] { Constants.DELIMITER }, StringSplitOptions.None)
                     .Skip(1)
                     .ToArray();
 
@@ -96,12 +97,15 @@ namespace YamahaVdf
         {
             internal Header2(string content)
             {
+                if (String.IsNullOrEmpty(content))
+                    throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
+
                 if (content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
                     content
-                    .Split(new[] { DELIMITER }, StringSplitOptions.None)
+                    .Split(new[] { Constants.DELIMITER }, StringSplitOptions.None)
                     .Skip(1)
                     .ToArray();
 
@@ -123,12 +127,15 @@ namespace YamahaVdf
         {
             internal Header3(string content)
             {
+                if (String.IsNullOrEmpty(content))
+                    throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
+
                 if (content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
                     content
-                    .Split(new[] { DELIMITER }, StringSplitOptions.None)
+                    .Split(new[] { Constants.DELIMITER }, StringSplitOptions.None)
                     .Skip(1)
                     .ToArray();
 
@@ -156,12 +163,15 @@ namespace YamahaVdf
         {
             internal Detail(string content)
             {
+                if (String.IsNullOrEmpty(content))
+                    throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
+
                 if (content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
                     content
-                    .Split(new[] { DELIMITER }, StringSplitOptions.None)
+                    .Split(new[] { Constants.DELIMITER }, StringSplitOptions.None)
                     .Skip(1)
                     .ToArray();
 
