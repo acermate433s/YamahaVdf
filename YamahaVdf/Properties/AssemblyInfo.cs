@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("YamahaVdf")]
+[assembly: AssemblyTitle("Yamaha VDF")]
 [assembly: AssemblyDescription("Yamaha VDF File Specification Reader")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Adrian Demavivas")]
