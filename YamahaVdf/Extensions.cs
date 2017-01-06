@@ -16,7 +16,7 @@ namespace YamahaVdf
         /// <param name="defaultValue">The default value.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">T must be an enumerated type</exception>
-        public static T GetEnumValue<T>(this string value, T defaultValue) where T : struct, IConvertible
+        public static T EnumValue<T>(this string value, T defaultValue) where T : struct, IConvertible
         {
             if (!typeof(T).IsEnum)
                 throw new ArgumentException("T must be an enumerated type");

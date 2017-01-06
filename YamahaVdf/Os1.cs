@@ -71,12 +71,12 @@ namespace YamahaVdf
                 CustomerReferenceNo = contents[index++];
                 PromotionCode = contents[index++];
                 PaymentTerm = contents[index++];
-                FreightCharge = contents[index++].GetEnumValue<FreightChargeType>(FreightChargeType.Collect);
-                SalesOrder = contents[index++].GetEnumValue<SalesOrderType>(SalesOrderType.Regular);
-                SalesOrderSource = contents[index++].GetEnumValue<SalesOrderSourceType>(SalesOrderSourceType.Internal);
+                FreightCharge = contents[index++].EnumValue<FreightChargeType>(FreightChargeType.Collect);
+                SalesOrder = contents[index++].EnumValue<SalesOrderType>(SalesOrderType.Regular);
+                SalesOrderSource = contents[index++].EnumValue<SalesOrderSourceType>(SalesOrderSourceType.Internal);
                 SupplierCode = contents[index++];
                 CompanyCode = contents[index++];
-                ShippingMethod = contents[index++].GetEnumValue<ShippingMethodType>(ShippingMethodType.Ground);
+                ShippingMethod = contents[index++].EnumValue<ShippingMethodType>(ShippingMethodType.Ground);
             }
 
             public char Indicator { get; } = 'A';
