@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace YamahaVdf
@@ -48,14 +49,69 @@ namespace YamahaVdf
             Ground,
         }
 
+        public enum CarrierServiceType
+        {
+            [Code("A")]
+            [Description("UPS 2nd Day Air")]
+            Ups2ndDayAir,
+
+            [Code("S")]
+            [Description("Parcel Post")]
+            ParcelPost,
+
+            [Code("G")]
+            [Description("UPS Ground")]
+            UpsGround,
+
+            [Code("009")]
+            [Description("Truck Freight")]
+            TruckFreight,
+
+            [Code("020")]
+            [Description("Federal Express Saturday Delivery")]
+            FederalExpressSaturdayDelivery,
+
+            [Code("021")]
+            [Description("DHL Worldwide Express")]
+            DhlWorldwideExpress,
+
+            [Code("028")]
+            [Description("UPS Next Day Air")]
+            UpsNextDayAir,
+
+            [Code("050")]
+            [Description("Ground Fedex Ground")]
+            GroundFedexGround,
+
+            [Code("108")]
+            [Description("Fedex Standard Overnight By 3pm")]
+            FedexStandardOvernightBy3pm,
+
+            [Code("112")]
+            [Description("Priority Mail Express")]
+            PriorityMailExpress,
+
+            [Code("119")]
+            [Description("Export Air")]
+            ExportAir,
+
+            [Code("120")]
+            [Description("Export Sea Freight")]
+            ExportSeaFreight,
+
+            [Code("121")]
+            [Description("Export Surface Freight")]
+            ExportSurfaceFreight,
+        }
+
         public class Header1
         {
             internal Header1(string content)
             {
-                if (String.IsNullOrEmpty(content))
+                if(String.IsNullOrEmpty(content))
                     throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
 
-                if (content[0] != Indicator)
+                if(content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
@@ -76,6 +132,7 @@ namespace YamahaVdf
                 SupplierCode = contents[index++];
                 CompanyCode = contents[index++];
                 ShippingMethod = contents[index++].EnumValue<ShippingMethodType>(ShippingMethodType.Ground);
+                CarrierService = contents[index++].EnumValue<CarrierServiceType>(CarrierServiceType.UpsGround);
             }
 
             public char Indicator { get; } = 'A';
@@ -90,16 +147,17 @@ namespace YamahaVdf
             public string SupplierCode { get; set; }
             public string CompanyCode { get; set; }
             public ShippingMethodType ShippingMethod { get; set; }
+            public CarrierServiceType CarrierService { get; set; }
         }
 
         public class Header2
         {
             internal Header2(string content)
             {
-                if (String.IsNullOrEmpty(content))
+                if(String.IsNullOrEmpty(content))
                     throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
 
-                if (content[0] != Indicator)
+                if(content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
@@ -126,10 +184,10 @@ namespace YamahaVdf
         {
             internal Header3(string content)
             {
-                if (String.IsNullOrEmpty(content))
+                if(String.IsNullOrEmpty(content))
                     throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
 
-                if (content[0] != Indicator)
+                if(content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
@@ -162,10 +220,10 @@ namespace YamahaVdf
         {
             internal Detail(string content)
             {
-                if (String.IsNullOrEmpty(content))
+                if(String.IsNullOrEmpty(content))
                     throw new ArgumentNullException(nameof(content), "Content cannot be an empty string");
 
-                if (content[0] != Indicator)
+                if(content[0] != Indicator)
                     throw new ArgumentException($"Invalid indicator.  Expecting {Indicator}");
 
                 var contents =
@@ -198,9 +256,9 @@ namespace YamahaVdf
 
         public Os1(string[] contents)
         {
-            foreach (var content in contents)
+            foreach(var content in contents)
             {
-                switch (content[0])
+                switch(content[0])
                 {
                     case 'A':
                         Header1s.Add(new Header1(content));
