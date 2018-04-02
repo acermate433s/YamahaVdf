@@ -240,7 +240,16 @@ namespace YamahaVdf
                 SalesPrice = double.Parse(contents[index++]);
                 RequiredShipDate = DateTime.ParseExact(contents[index++], "yyyyMMdd", null);
                 PurchasePrice = double.Parse(contents[index++]);
-                TaxAmount = contents[index] != "" ? double.Parse(contents[index++]) : 0D;
+
+                // tax amount is to be implemented; make sure that it's in the OS1 file
+                // before incrementing the index and reading its content
+                if(index < contents.Length)
+                {
+                    TaxAmount = contents[index] != "" ? double.Parse(contents[index]) : 0D;
+                } else
+                {
+                    TaxAmount = 0D;
+                }
             }
 
             public char Indicator { get; } = 'D';
