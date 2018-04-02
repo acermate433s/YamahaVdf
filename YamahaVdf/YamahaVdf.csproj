@@ -5,8 +5,9 @@
         <Authors>Adrian Demavivas</Authors>
         <Company>Adrian Demavivas</Company>
         <PackageId>acermate433s.YamahaVdf</PackageId>
-        <Version>1.0.2</Version>
-        <PackageReleaseNotes>Change target framework to .NET Standard 2.0</PackageReleaseNotes>
+        <Version>1.0.3</Version>
+        <PackageReleaseNotes>- Fixed bug in reading Tax Amount
+- Added Carrier Service Type</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <SignAssembly>false</SignAssembly>
     </PropertyGroup>
