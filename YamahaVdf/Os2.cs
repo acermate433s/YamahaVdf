@@ -20,6 +20,7 @@ namespace YamahaVdf
             SalesOrderNo = double.Parse(contents[index++]);
             SalesOrderLineNo = int.Parse(contents[index++]);
             PartNo = contents[index++];
+            ConfirmedReceiptDate = DateTime.ParseExact(contents[index++], "yyyyMMdd", null);
             AllocatedQuantity = double.Parse(contents[index++]);
             ExpectedShipDate = DateTime.ParseExact(contents[index++], "yyyyMMdd", null);
         }
@@ -28,6 +29,7 @@ namespace YamahaVdf
         public double SalesOrderNo { get; set; }
         public int SalesOrderLineNo { get; set; }
         public string PartNo { get; set; }
+        public DateTime ConfirmedReceiptDate { get; set; }
         public double AllocatedQuantity { get; set; }
         public DateTime ExpectedShipDate { get; set; }
     }
