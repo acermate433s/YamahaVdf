@@ -7,6 +7,11 @@ namespace YamahaVdf
 {
     public class Os1
     {
+        const char INDICATOR_HEADER1 = 'A';
+        const char INDICATOR_HEADER2 = 'B';
+        const char INDICATOR_HEADER3 = 'C';
+        const char INDICATOR_DETAIL = 'D';
+
         public enum FreightChargeType
         {
             [Code("C")]
@@ -135,7 +140,7 @@ namespace YamahaVdf
                 CarrierService = contents[index++].EnumValue<CarrierServiceType>(CarrierServiceType.UpsGround);
             }
 
-            public char Indicator { get; } = 'A';
+            public char Indicator { get; } = INDICATOR_HEADER1;
             public double SalesOrderNo { get; set; }
             public string CustomerCode { get; set; }
             public string CustomerReferenceNo { get; set; }
@@ -173,7 +178,7 @@ namespace YamahaVdf
                 AddressLine2 = contents[index++];
             }
 
-            public char Indicator { get; } = 'B';
+            public char Indicator { get; } = INDICATOR_HEADER2;
             public double SalesOrderNo { get; set; }
             public string ContactPerson { get; set; }
             public string AddressLine1 { get; set; }
@@ -206,7 +211,7 @@ namespace YamahaVdf
                 ContactPhoneNo = contents[index++];
             }
 
-            public char Indicator { get; } = 'C';
+            public char Indicator { get; } = INDICATOR_HEADER3;
             public double SalesOrderNo { get; set; }
             public string CustomerName { get; set; }
             public string CityName { get; set; }
@@ -252,7 +257,7 @@ namespace YamahaVdf
                 }
             }
 
-            public char Indicator { get; } = 'D';
+            public char Indicator { get; } = INDICATOR_DETAIL;
             public double SalesOrderNo { get; set; }
             public int SalesOrderLineNo { get; set; }
             public string PartNo { get; set; }
@@ -269,16 +274,16 @@ namespace YamahaVdf
             {
                 switch(content[0])
                 {
-                    case 'A':
+                    case INDICATOR_HEADER1:
                         Header1s.Add(new Header1(content));
                         break;
-                    case 'B':
+                    case INDICATOR_HEADER2:
                         Header2s.Add(new Header2(content));
                         break;
-                    case 'C':
+                    case INDICATOR_HEADER3:
                         Header3s.Add(new Header3(content));
                         break;
-                    case 'D':
+                    case INDICATOR_DETAIL:
                         Details.Add(new Detail(content));
                         break;
                 }
