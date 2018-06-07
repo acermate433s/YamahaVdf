@@ -5,11 +5,11 @@
         <Authors>Adrian Demavivas</Authors>
         <Company>Adrian Demavivas</Company>
         <PackageId>acermate433s.YamahaVdf</PackageId>
-        <Version>1.0.4</Version>
-        <PackageReleaseNotes>- Fixed bug in reading Tax Amount
-- Added Carrier Service Type</PackageReleaseNotes>
+        <Version>1.0.5</Version>
+        <PackageReleaseNotes>- Added support for OS5</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <SignAssembly>false</SignAssembly>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyVersion>1.0.5.0</AssemblyVersion>
     </PropertyGroup>
     <ItemGroup>
       <Folder Include="Properties\" />
