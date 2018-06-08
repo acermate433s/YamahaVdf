@@ -30,7 +30,6 @@ namespace YamahaVdf
                 PackSlipNo = contents[index++];
                 InvoiceNo = contents[index++];
                 ShippedDate = DateTime.ParseExact(contents[index++], "yyyyMMdd", null);
-                SupplierCode = contents[index++];
                 FreightAmount = double.Parse(contents[index++]);
                 CarrierCode = contents[index++];
                 CarrierTrackingNo = contents[index++];
