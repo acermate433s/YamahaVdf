@@ -5,11 +5,11 @@
         <Authors>Adrian Demavivas</Authors>
         <Company>Adrian Demavivas</Company>
         <PackageId>acermate433s.YamahaVdf</PackageId>
-        <Version>1.0.5</Version>
-        <PackageReleaseNotes>- Added support for OS5</PackageReleaseNotes>
+        <Version>1.0.6</Version>
+        <PackageReleaseNotes>- Added support for internal IDs for OS5 header and detail files.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <SignAssembly>true</SignAssembly>
-        <AssemblyVersion>1.0.5.0</AssemblyVersion>
+        <AssemblyVersion>1.0.6.0</AssemblyVersion>
     </PropertyGroup>
     <ItemGroup>
       <Folder Include="Properties\" />

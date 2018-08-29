@@ -26,6 +26,7 @@ namespace YamahaVdf
                     .ToArray();
 
                 int index = 0;
+                InternalId = contents[index++];
                 SupplierCode = contents[index++];
                 PackSlipNo = contents[index++];
                 InvoiceNo = contents[index++];
@@ -35,6 +36,11 @@ namespace YamahaVdf
                 CarrierTrackingNo = contents[index++];
             }
 
+            public Header()
+            {
+            }
+
+            public string InternalId { get; set; }
             public char Indicator { get; } = INDICATOR_HEADER;
             public string SupplierCode { get; set; }
             public string PackSlipNo { get; set; }
@@ -62,6 +68,7 @@ namespace YamahaVdf
                     .ToArray();
 
                 int index = 0;
+                InternalId = contents[index++];
                 SalesOrderNo = contents[index++];
                 SalesOrderLineNo = contents[index++];
                 PartNo = contents[index++];
@@ -70,6 +77,11 @@ namespace YamahaVdf
                 ShippedPrice = double.Parse(contents[index++]);
             }
 
+            public Detail()
+            {
+            }
+
+            public string InternalId { get; set; }
             public char Indicator { get; } = INDICATOR_DETAIL;
             public string SalesOrderNo { get; set; }
             public string SalesOrderLineNo { get; set; }
@@ -77,6 +89,12 @@ namespace YamahaVdf
             public string WarehouseCode { get; set; }
             public int ShippedQuantity { get; set; }
             public double ShippedPrice { get; set; }
+        }
+
+        public Os5(IEnumerable<Header> headers, IEnumerable<Detail> details)
+        {
+            this.Headers.AddRange(headers);
+            this.Details.AddRange(details);
         }
 
         public Os5(string[] contents)
